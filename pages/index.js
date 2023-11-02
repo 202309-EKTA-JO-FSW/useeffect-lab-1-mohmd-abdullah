@@ -9,15 +9,17 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   // You will need to put a state here to save all the dogs data into
   const [data, setData] = useState(!null);
-  const [inputText, setInputText] = useState("")
+  const [inputText, setInputText] = useState(null)
   // And you will fetch the data with useEffect
+  const apiUrl = `https://dog.ceo/api/breeds/image/random/${inputText}`
+  
   useEffect(() => {
-    fetch('https://dog.ceo/api/breeds/image/random/${inputText}')
+    fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => {
         setData(data)
       })
-  }, [])
+  }, [inputText])
   //console.log("ID: ", data.id);
   //console.log(data.id);
 
